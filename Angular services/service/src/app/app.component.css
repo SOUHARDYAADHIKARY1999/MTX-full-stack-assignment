@@ -1,0 +1,28 @@
+
+body{
+    background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+}
+
+app {
+    min-height: 100% ;
+    width: 100% ;
+    margin-bottom: -271 px;
+    display: table;
+ }
+app-header,
+   router-outlet,
+   footer {
+      display: table - row;
+   }
+
+app-header {
+   height: 60 px;
+}
+
+router-outlet {
+   position: absolute;
+}
+
+app-footer {
+   height: 271 px;
+}

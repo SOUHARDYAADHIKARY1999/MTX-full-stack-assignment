@@ -1,0 +1,32 @@
+{
+  "posts": [
+    {
+      "productId": 8,
+      "productName": "potatos",
+      "productPrice": 235,
+      "id": 8
+    },
+    {
+      "productId": 11,
+      "productName": "egg",
+      "productPrice": 25,
+      "id": 11
+    },
+    {
+      "productId": 1,
+      "productName": "ice cream",
+      "productPrice": 35,
+      "id": 12
+    },
+    {
+      "productId": 6,
+      "productName": "mushroom",
+      "productPrice": 345,
+      "id": 13
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}

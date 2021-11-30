@@ -1,0 +1,92 @@
+<div class="container">
+    <br>
+    <br>
+    <p></p>
+    <br>
+    <div class="product-header" style="height: fit-content;">
+        <h4 style="float: left; margin-left: 20px; align-self: center;">Products data</h4>
+        <button type="button"class="btn btn-success" style="float: right; margin-right: 20px; margin-top: 3px;"
+        data-toggle="modal" data-target="#exampleModal" (click)="open(content)" id="open">
+            <i class="fa fa-plus"></i> &nbsp;&nbsp;&nbsp;&nbsp; Add New Product</button>
+    </div>
+    <br>
+    <div class="box">
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Enter id to search" [(ngModel)]='productId' (ngModelChange)="searchById()">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Enter product name to search" [(ngModel)]='productName' (ngModelChange)="searchByName()">
+                </div>
+            </div>
+        </div>
+                
+        <br>
+        <table class="table table-stripped">
+            <thead>
+                <tr> 
+                    <th scope="col"><i class="fa fa-cubes"></i> &nbsp; &nbsp;Product Id</th>
+                    <th scope="col"><i class="fa fa-folder-o"></i> &nbsp;&nbsp;Product Name</th>
+                    <th scope="col"><i class="fa fa-inr"></i> &nbsp;&nbsp;Product Price</th>
+                    <th scope="col"><i class="fa fa-wrench"></i> &nbsp;&nbsp;Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-center" *ngFor="let row of productData">
+                    <td>{{row.productId}}</td>
+                    <td>{{row.productName}}</td>
+                    <td >{{row.productPrice}}</td>
+                    <td>
+                        <button class="btn btn-primary" style="margin-right: 10px;"
+                        data-toggle="modal" data-target="#exampleModal" (click)="onEdit(row)"><i class="fa fa-edit"></i></button>
+                        <button  (click)="deleteProductById(row)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p style="height: 200px;"></p> 
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">New Product Insertion</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form >
+        <div class="form-group">
+          <form [formGroup]="formValue">
+              <label>Enter the product details here</label>
+            <div class="row">
+              <div class="col">
+                <input type="number" formControlName="productId" class="form-control" placeholder="Product Id">
+              </div>
+              <div class="col">
+                <input type="text" formControlName="productName" class="form-control" placeholder="Product Name">
+              </div>
+            </div>
+            <br>
+            <div class="row text-center">
+                <div class="col">
+                    <i class="fa fa-inr" style="float: left; font-size: large; width: 10%"></i>
+                    <input type="number" formControlName="productPrice" class="form-control" placeholder="Enter Price" style="float: right; width: 90%;"> 
+            </div>
+            </div>
+          </form>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" id="cancel" class="btn btn-danger" (click)="modal.close('Save click')"><i class="fa fa-window-close"></i>&nbsp;Cancel</button>
+        <button *ngIf="showAdd" type="button" class="btn btn-success" (click)="postProductDetails()"><i class="fa fa-upload"></i>&nbsp;Add Data</button>
+        <button *ngIf="showUpdate" type="button" class="btn btn-success" (click)="updateProductDetails()"><i class="fa fa-refresh"></i>&nbsp;Update Data</button>
+    </div>
+  </ng-template>

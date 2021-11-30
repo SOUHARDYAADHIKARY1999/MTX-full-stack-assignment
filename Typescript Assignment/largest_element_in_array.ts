@@ -1,0 +1,1 @@
+var arr=new Array(1,78,90,67)
