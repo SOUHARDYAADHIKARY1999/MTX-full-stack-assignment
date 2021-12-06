@@ -1,0 +1,9 @@
+<div>
+    <img src="assets/img/single_user.png" id="icon" alt="User Icon" />
+</div>
+<form >
+    <input type="text" name="id" placeholder="user id" [(ngModel)]="user_Id" name="user_Id">
+    <input type="password" name="password" placeholder="Password" [(ngModel)]="password" name="password"
+        required minlength="4" >
+    <input type="submit" value="Login" (click)="loggedIn()">
+</form>

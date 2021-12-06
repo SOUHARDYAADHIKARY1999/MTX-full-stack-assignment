@@ -1,0 +1,63 @@
+<div class="container">
+    <div style="height: 20px;"></div>
+    <button type="button" class="btn btn-primary" (click)="getAllPolicies()">Get All Policy</button>
+    <!--<input type="button" (click)="getAllPolicies()" value="Get All Policy">-->
+    <div style="height: 20px;"></div>
+    <table class="table table-bordered" style="border: royalblue;">
+        <tr>
+            <td>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="policyNumber"  placeholder="Enter Policy Number" 
+                                [(ngModel)]="policyNumber">
+                        <small id="emailHelp" class="form-text text-muted">This field is required</small>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Name" [(ngModel)]="name" name="name">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Amount" [(ngModel)]="amount" name="amount">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Maturity Amount" [(ngModel)]="matAmount" name="matAmount">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Nominee" [(ngModel)]="nominee" name="nominee">
+                        </div>
+                    </div>
+                    <br>
+                    <div *ngIf="action">
+                        <button type="submit" class="btn btn-primary mb-2" (click)="insertPolicyData()">Add data</button>
+                    </div>
+                    <div *ngIf="!action">
+                        <button type="submit" class="btn btn-primary mb-2" (click)="updatePolicyData()">Update data</button>
+                    </div>
+                </form>
+            </td>
+        </tr>
+    </table>
+<table class="table table-hover m-t-4">
+    <thead class="thead-dark">
+        <tr>
+            <th>PolicyNumber</th>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>MaturityAmount</th>
+            <th>Nominee</th>
+            <th>Crud Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let policy of arrPolicy">
+            <td>{{policy.PolicyNumber}}</td>
+            <td>{{policy.Name}}</td>
+            <td>{{policy.Amount}}</td>
+            <td>{{policy.MaturityAmount}}</td>
+            <td>{{policy.Nominee}}</td>
+            <td><button (click)="onEdit(policy.PolicyNumber)" class="btn btn-primary" style="margin-right: 10px;">Edit</button>
+                <button (click)="onDelete(policy.PolicyNumber)" class="btn btn-danger">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
+</div>
