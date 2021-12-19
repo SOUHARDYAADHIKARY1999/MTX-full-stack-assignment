@@ -9,9 +9,6 @@ module.exports = (sequelize, Sequelize) => {
         Password: Sequelize.STRING,
         Role: Sequelize.STRING,
 
-
-
-
     }, { timestamps: false, freezeTableName: true });
 
 

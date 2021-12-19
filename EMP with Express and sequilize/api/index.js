@@ -33,17 +33,7 @@ db.credentials = require("./models/credentials.model")(sequelize, Sequelize);
 const policy = db.policy;
 const credentials = db.credentials;
 
-/*let cred = sequelize.define('credentials',{
-    user_id:{
-        primaryKey:true,
-        type:Sequelize.INTEGER
-    },
-    password:Sequelize.STRING,
-    role:Sequelize.STRING
-},{
-    timestamps: false,
-    freezeTableName: true
-})*/
+
 
 app.get("/",function(req,res){
 
