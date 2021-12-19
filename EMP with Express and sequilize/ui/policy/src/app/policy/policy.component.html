@@ -27,6 +27,11 @@
                         </div>
                     </div>
                     <br>
+                    <div class="row">
+                        <input type="text" class="form-control" placeholder="enter the name to search"  name="search_name"
+                            [(ngModel)]="search_name" (ngModelChange)="search()">
+                    </div>
+                    <br>
                     <div *ngIf="action">
                         <button type="submit" class="btn btn-primary mb-2" (click)="insertPolicyData()">Add data</button>
                     </div>
@@ -40,8 +45,8 @@
 <table class="table table-hover m-t-4">
     <thead class="thead-dark">
         <tr>
-            <th>PolicyNumber</th>
-            <th>Name</th>
+            <th (click)="sort('PolicyNumber')">PolicyNumber&nbsp;<i class="fa fa-sort"></i></th>
+            <th (click)="sort('Name')">Name&nbsp;<i class="fa fa-sort"></i></th>
             <th>Amount</th>
             <th>MaturityAmount</th>
             <th>Nominee</th>
@@ -49,7 +54,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let policy of arrPolicy">
+        <tr *ngFor="let policy of arrPolicy | orderBy:key:reverse">
             <td>{{policy.PolicyNumber}}</td>
             <td>{{policy.Name}}</td>
             <td>{{policy.Amount}}</td>

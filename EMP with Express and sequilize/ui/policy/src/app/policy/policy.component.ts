@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Policy } from '../models/policy.model';
 import { PolicyService } from '../services/policy.service';
 
 @Component({
@@ -16,6 +17,9 @@ export class PolicyComponent implements OnInit {
   amount:string="";
   matAmount:string="";
   nominee:string="";
+  search_name:any;
+
+  policy:Policy[]=[];
 
   action:boolean=true;
 
@@ -27,9 +31,9 @@ export class PolicyComponent implements OnInit {
     console.log(this.matAmount);
     console.log(this.policyService.getAllPolicies());
     this.policyService.getAllPolicies().subscribe(
-      (data)=>{
+      (res)=>{
         //console.log("Recieved data"+JSON.stringify(data));
-        this.arrPolicy=data;
+        this.arrPolicy=res;
       },
       (error)=>console.log(error)
     )
@@ -104,6 +108,24 @@ export class PolicyComponent implements OnInit {
       (error)=>console.log("Unable to insert record",error)
     )
   }*/
+  search(){
+    if(this.search_name==""){
+      this.getAllPolicies();
+    }
+    else{
+      console.log("lp");
+      this.arrPolicy=this.arrPolicy.filter((res: { Name: string; })=>{
+        return res.Name.toLocaleLowerCase().match(this.search_name.toLocaleLowerCase());
+      })
+    }
+  } 
+  key:string='id';
+  reverse:boolean=false;
+  sort(key:string){
+    this.key=key;
+    this.reverse=!this.reverse
+  }
+
 
   onDelete(id:number){
     this.policyService.deletePolicy(id).subscribe(
